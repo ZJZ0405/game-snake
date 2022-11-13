@@ -40,6 +40,8 @@ private:
 
     cv::Mat map;
 
+   int  choice; //启动模式
+
 
 
 public:
@@ -52,6 +54,8 @@ public:
     bool showMiniMap(void);
 
     inline void refresh(void);
+
+    bool operator<<(int  num);
 
 };
 

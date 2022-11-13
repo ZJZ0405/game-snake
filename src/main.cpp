@@ -23,15 +23,25 @@ int main(void)
 	}
 	else if (choice == 1)
 	{
-
-		
 		//创建类对象
         Game game;
 		GSnake snake;
 
+		snake << choice;
+
+        snake.start();
+	}
+	else if (choice == 2)
+	{
+		//创建类对象
+        Game game;
+		GSnake snake;
+
+		snake << choice;
+
         snake.start();
 			
-		}
+	}
 
 
 

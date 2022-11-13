@@ -8,6 +8,8 @@ GSnake::GSnake()
 
 	note = false;
 
+	choice = 1;
+
     //boundary
 
     head = {0, 0, 0};
@@ -72,7 +74,9 @@ bool GSnake::tip(void)
 			food.x = random(head.x - LENGTH/(4*R),head.x + LENGTH/(4*R));
 			food.y = random(head.y - WIDE/(4*R),head.y + WIDE/(4*R));
 			note = true;
-			std::cout <<  "Food: " << food.x << " , " << food.y << std::endl;
+
+			if (choice == 2) std::cout <<  "Food: " << food.x << " , " << food.y << std::endl; //调试输出
+
 		}while(abs(food.x) >= M_LENGTH || abs(food.y) >= M_WIDE);
 	}
     //移动蛇头
@@ -137,7 +141,7 @@ bool GSnake::tip(void)
 			
 	}
 
-	std::cout <<  "Head: " << head.x << " , " << head.y << std::endl;
+	if (choice == 2) std::cout <<  "Head: " << head.x << " , " << head.y << std::endl; //调试输出
 
 	if ((abs(head.x) >= M_LENGTH) || (abs(head.y) >= M_WIDE))
 	{
@@ -311,6 +315,13 @@ bool GSnake::showMiniMap(void)
 
 	
 	
+
+	return false;
+}
+
+bool GSnake::operator<<(int  num)  //启动模式输入
+{
+	choice = num;
 
 	return false;
 }
