@@ -52,11 +52,12 @@ int main(void)
 
 	cv::setMouseCallback("window", mouse);
 
+
+
 	cv::waitKey(0);
 
 
 
-    std::cout << "vsfgfv" << std::endl;
 
 
 
