@@ -27,6 +27,8 @@ int Game::getKey(void)
 		case 'd':
 			return 4;
 			break;
+		case 'o':
+			exit(200);
 		default:
 			return 0;
 			break;
