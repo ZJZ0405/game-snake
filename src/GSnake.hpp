@@ -41,12 +41,15 @@ private:
     cv::Mat map;
 
 
+
 public:
     GSnake();
 
     bool start(void);
 
     bool tip(void);
+
+    bool showMiniMap(void);
 
     inline void refresh(void);
 

@@ -72,7 +72,7 @@ bool GSnake::tip(void)
 			food.x = random(head.x - LENGTH/(4*R),head.x + LENGTH/(4*R));
 			food.y = random(head.y - WIDE/(4*R),head.y + WIDE/(4*R));
 			note = true;
-			std::cout << food.x << " , " << food.y << std::endl;
+			std::cout <<  "Food: " << food.x << " , " << food.y << std::endl;
 		}while(abs(food.x) >= M_LENGTH || abs(food.y) >= M_WIDE);
 	}
     //移动蛇头
@@ -136,6 +136,9 @@ bool GSnake::tip(void)
 			}
 			
 	}
+
+	std::cout <<  "Head: " << head.x << " , " << head.y << std::endl;
+
 	if ((abs(head.x) >= M_LENGTH) || (abs(head.y) >= M_WIDE))
 	{
 		std::cout << "you lose!!!" << std::endl;
@@ -178,6 +181,7 @@ bool GSnake::tip(void)
 
 	refresh();
 	showNumber(map, LENGTH, WIDE, TrueLong, 2);
+	showMiniMap();
     change(&head, &food, map, LENGTH, WIDE, R);		
 	change(&head, &boundary, map, LENGTH, WIDE, R);
 	change(&head, &body, map, LENGTH, WIDE, R);
@@ -191,3 +195,122 @@ inline void GSnake::refresh(void)
     map = cv::Mat::zeros(cv::Size(LENGTH, WIDE), CV_8UC3); //刷新地图
 }
 
+bool GSnake::showMiniMap(void)
+{
+	cv::rectangle(map, 
+								 cv::Point(0, 0),
+								 cv::Point(100, 100),
+								 cv::Scalar(255, 255, 255)); //画出小地图轮廓
+
+	cv::circle(map,
+						cv::Point(50, 50),
+						1,
+						cv::Scalar(255, 255, 255),
+						-1);  //蛇头标点
+
+	if (abs(head.x - food.x) <=50 && abs(head.y - food.y) <= 50)
+	{
+		cv::circle(map,
+							cv::Point((50 + (food.x - head.x)), (50 + (food.y - head.y))),  // 蛇走两格， 地图走一格
+							1,
+							cv::Scalar(0, 0, 255),
+							-1);  //食物
+	}
+	else
+	{
+		if (food.x - head.x> 50)
+		{
+			if (food.y - head.y > 50)
+			{
+				//右下
+				cv::line(map,
+								cv::Point(100, 100),
+								cv::Point(100, 75),
+				 				cv::Scalar(255, 255, 0));
+				cv::line(map,
+								cv::Point(100, 100),
+								cv::Point(75, 100),
+								cv::Scalar(255, 255, 0));
+			}
+			else if (abs(food.y - head.y) <= 50)
+			{
+				//右
+				cv::line(map,
+								cv::Point(100, 25),
+				 				cv::Point(100, 75),
+				 				cv::Scalar(255, 255, 0));
+			}
+			else if (food.y - head.y < -50)
+			{
+				//右上
+				cv::line(map,
+				 				cv::Point(100, 0),
+				 				cv::Point(75, 0),
+				 				cv::Scalar(255, 255, 0));
+				cv::line(map,
+								cv::Point(100, 0),
+								cv::Point(100, 25),
+								cv::Scalar(255, 255, 0));       
+			}
+		}
+		else if (abs(food.x - head.x) <= 50)
+		{
+			if (food.y - head.y > 50)
+			{
+				//下
+				cv::line(map,
+				 				cv::Point(25, 100),
+				 				cv::Point(75, 100),
+				 				cv::Scalar(255, 255, 0));
+			}
+			else if (food.y - head.y < -50)
+			{
+				//上
+				cv::line(map,
+				 				cv::Point(25, 0),
+				 				cv::Point(75, 0),
+				 				cv::Scalar(255, 255, 0));
+			}
+		}
+		else if (food.x - head.x < -50)
+		{
+			if (food.y - head.y > 50)
+			{
+				//左下
+				cv::line(map,
+				 				cv::Point(0, 100),
+								cv::Point(25, 100),
+				 				cv::Scalar(255, 255, 0));
+					cv::line(map,
+									cv::Point(0, 100),
+									cv::Point(0, 75),
+									cv::Scalar(255, 255, 0));     
+			}
+			else if (abs(food.y - head.y) <= 50)
+			{
+				//左
+				cv::line(map,
+				 				cv::Point(0, 25),
+				 				cv::Point(0, 75),
+				 				cv::Scalar(255, 255, 0));
+			}
+			else if (food.y - head.y < -50)
+			{
+				//左上
+				cv::line(map,
+								cv::Point(0, 0),
+								cv::Point(25, 0),
+								cv::Scalar(255, 255, 0));
+					cv::line(map,
+									cv::Point(0, 0),
+									cv::Point(0, 25),
+									cv::Scalar(255, 255, 0));    
+			}
+		}
+	}
+
+	
+	
+
+	return false;
+}

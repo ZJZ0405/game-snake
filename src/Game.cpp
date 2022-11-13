@@ -114,3 +114,4 @@ bool Game::showNumber(const cv::Mat & background, const int & LENGTH, const int 
 
 	return false;
 }
+
