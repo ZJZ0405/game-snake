@@ -8,6 +8,6 @@ find_package(OpenCV 4.6.0 REQUIRED)
 #加载 OpenCV 4.6.0 的头文件
 include_directories(${OpenCV_INCLUDE_DIRS})
 #将程序生成为可执行文件
-add_executable(main src/main.cpp src/GSnake.cpp src/Game.cpp)
+add_executable(GUI-main src/GUI-main.cpp src/GSnake.cpp src/Game.cpp)
 #链接 lib 文件到可执行文件中
 target_link_libraries(main ${OpenCV_LIBS})
