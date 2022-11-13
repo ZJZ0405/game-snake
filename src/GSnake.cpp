@@ -177,6 +177,7 @@ bool GSnake::tip(void)
 	}
 
 	refresh();
+	showNumber(map, LENGTH, WIDE, TrueLong, 2);
     change(&head, &food, map, LENGTH, WIDE, R);		
 	change(&head, &boundary, map, LENGTH, WIDE, R);
 	change(&head, &body, map, LENGTH, WIDE, R);

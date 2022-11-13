@@ -42,7 +42,7 @@ protected:
 
     bool change(const singlePoint * center, const multiplePoint * single, const cv::Mat & background, const int & LENGTH, const int & WIDE, const int & R) const;
 
-
+    bool showNumber(const cv::Mat & background, const int & LENGTH, const int & WIDE, const int & Num, int kind) const;
 
 };
 

@@ -93,3 +93,24 @@ bool Game::change(const singlePoint * center, const multiplePoint * multipe, con
 
 	return false;
 }
+
+bool Game::showNumber(const cv::Mat & background, const int & LENGTH, const int & WIDE, const int & Num, int kind) const
+{
+	switch (kind)
+	{
+	case 2:
+		cv::putText(background, 
+								 std::to_string(Num),
+								 cv::Point(LENGTH - 50, 50),
+								 0,
+								 1,
+								 cv::Scalar(255, 255, 255)
+								 );
+		break;
+	
+	default:
+		break;
+	}
+
+	return false;
+}
