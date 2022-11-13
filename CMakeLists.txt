@@ -10,4 +10,4 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 #将程序生成为可执行文件
 add_executable(GUI-main src/GUI-main.cpp src/GSnake.cpp src/Game.cpp)
 #链接 lib 文件到可执行文件中
-target_link_libraries(main ${OpenCV_LIBS})
+target_link_libraries(GUI-main ${OpenCV_LIBS})
