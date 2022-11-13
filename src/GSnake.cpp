@@ -55,7 +55,20 @@ bool GSnake::start(void)
     while(true)
     {
         if (tip())
-            break;
+		{
+            cv::Mat home = cv::Mat::zeros(cv::Size(LENGTH, WIDE), CV_8UC3); //刷新地图
+
+			cv::putText(home,
+									"You lose!!!",
+									cv::Point(64, 256),
+									7,
+									2,
+									cv::Scalar(0, 0, 255),
+									2);
+			cv::imshow("window", home);
+			cv::waitKey(50);
+			break;
+		}
         //时间间隔 0.3秒
 		usleep(300000);
 		//sleep(1);
